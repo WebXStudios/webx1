@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Site header styles */
+.site-header {
+  display: flex;
+  justify-content: space-between; /* Separate logo and navigation */
+  align-items: center; /* Center items vertically */
+  background-color: black;
+  padding: 20px;
+  font-family: 'Manrope', sans-serif;
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensures the header stays on top */
+}
+
+.logo {
+  flex: 0 0 auto; /* Prevent logo from growing or shrinking */
+}
+
+.logo img {
+  width: 60px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.main-nav {
+  text-align: right; /* Align navigation links to the right */
+  flex: 1; /* Take up remaining space */
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.main-nav a {
+  color: white;
+  font-family: "DM Sans", sans-serif;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Basic styles for the pages */
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the left */
+  font-family: 'Manrope', sans-serif; /* Use your preferred font */
+  color: #333; /* Default text color */
+  padding-left: 20px; /* Add left padding for better alignment */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Half-page specific styles */
+.half-page {
+  height: 40vh; /* Half of the viewport height */
+  padding-top: 60px; /* Adjust for the fixed header */
+}
+
+/* Full-page specific styles */
+.full-page {
+  height: 100vh; /* Full viewport height */
+  padding-top: 60px; /* Adjust for the fixed header */
+  position: relative; /* Positioning context for absolutely positioned elements */
+}
+
+/* Styling specifically for Page 1 */
+.page.page-1 {
+  background-color: #000; /* Black background for Page 1 */
+  color: #fff; /* White text color for better contrast */
+}
+
+.sample-heading-1 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 7vh; /* Adjust size as needed */
+}
+
+.sample-heading-1-1, .sample-heading-1-3 {
+  color: white;
+  font-weight: bold;
+}
+
+.sample-heading-1-2 {
+  color: black;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+/* Typewriter effect */
+.typewriter {
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block; /* Ensure inline display to move with text */
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}
+
+/* Video container */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px; /* Rounded corners for the video */
+}
+
+/* Video styling */
+.rounded-video {
+  width: 100%; /* Ensure the video fills its container */
+  height: 100%; /* Ensure the video fills its container */
+  object-fit: cover; /* Cover the entire container while maintaining aspect ratio */
+}
+
+/* Media Queries for Responsive Design */
+
+/* For tablets and smaller devices */
+@media (max-width: 1024px) {
+  .site-header {
+    padding: 10px; /* Adjust spacing for smaller screens */
+  }
+
+  .main-nav {
+    display: flex;
+    justify-content: flex-end; /* Align navigation to the right */
+    flex: 1; /* Take up remaining space */
+    margin-right: 20px; /* Adjust right margin */
+  }
+
+  .sample-heading-1 {
+    font-size: 5vh; /* Decrease font size for tablet */
+    text-align: left !important; /* Force left alignment */
+  }
+
+  .typewriter {
+    display: inline-block; /* Ensure typewriter is inline with text */
+    margin-top: 10px; /* Add space between lines */
+  }
+
+  /* Ensure all text in Page 1 is aligned left */
+  .page.page-1 {
+    text-align: left;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: row; /* Stack logo and nav horizontally */
+    justify-content: space-between; /* Align items to the right and left */
+    padding: 10px; /* Adjust spacing */
+  }
+
+  .main-nav {
+    display: none; /* Hide the main nav by default */
+    width: 100%; /* Full width dropdown */
+    background-color: black; /* Background color for the dropdown */
+    position: fixed;
+    top: 60px; /* Adjust according to header height */
+    right: 0; /* Align to the right side of the screen */
+    z-index: 999; /* Ensure dropdown is above other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+  }
+
+  .main-nav.active {
+    display: flex; /* Show the main nav when active */
+    flex-direction: column; /* Stack links vertically */
+    align-items: flex-end; /* Align links to the right */
+    gap: 10px; /* Adjust spacing between links */
+    padding: 10px; /* Padding for better touch experience */
+  }
+
+  .main-nav a {
+    color: white;
+    font-size: 16px; /* Adjust font size */
+    padding: 10px; /* Padding around each link */
+    text-align: center; /* Center text in dropdown */
+    width: 100%; /* Full width for links */
+    display: block; /* Display as block for full width */
+  }
+
+  .menu-icon {
+    display: block; /* Show the menu icon */
+    cursor: pointer; /* Add pointer cursor */
+    margin-right: 10px; /* Adjust spacing */
+  }
+
+  .menu-lines {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-icon.active .menu-lines:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-icon.active .menu-lines:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .sample-heading-1 {
+    font-size: 4vh; /* Decrease font size further for mobile */
+    text-align: left; /* Align text to the left */
+  }
+
+  .typewriter {
+    display: inline-block; /* Ensure typewriter is inline with text */
+    margin-top: 10px; /* Add space between lines */
+  }
+
+  /* Ensure all text in Page 1 is aligned left */
+  .page.page-1 {
+    text-align: left;
+  }
+}
+
+/* For iPad landscape */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .typewriter {
+    display: inline-block; /* Ensure typewriter is inline with text */
+    margin-top: 10px; /* Add space between lines */
+  }
+}
