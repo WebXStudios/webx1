@@ -35,12 +35,15 @@
 
 .main-nav {
   text-align: right; /* Align navigation links to the right */
+  flex: 1; /* Take up remaining space */
 }
 
 .main-nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
+  margin: 0;
+  justify-content: flex-end; /* Align items to the right */
 }
 
 .main-nav a {
@@ -48,7 +51,6 @@
   font-family: "DM Sans", sans-serif;
   text-decoration: none;
   font-size: 18px;
- 
 }
 
 /* Basic styles for the pages */
@@ -64,7 +66,7 @@
 
 /* Half-page specific styles */
 .half-page {
-  height: 40vh; /* Half of the viewport height */
+  height: 50vh; /* Half of the viewport height */
   padding-top: 60px; /* Adjust for the fixed header */
 }
 
@@ -81,13 +83,6 @@
   color: #fff; /* White text color for better contrast */
 }
 
-/* Styling for the sample heading */
-.sample-heading {
-  font-size: 36px; /* Adjust size as needed */
-  font-weight: bold;
-  text-transform: uppercase; /* Example text styles */
-}
-
 .sample-heading-1 {
   font-family: "DM Sans", sans-serif;
   font-size: 7vh; /* Adjust size as needed */
@@ -100,14 +95,6 @@
 
 .sample-heading-1-2 {
   color: black;
-  font-weight: bold;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white;
-}
-
-.sample-heading-1-4 {
-  color: black;
-  font-size: 7vh;
   font-weight: bold;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: white;
@@ -146,4 +133,104 @@
   width: 100%; /* Ensure the video fills its container */
   height: 100%; /* Ensure the video fills its container */
   object-fit: cover; /* Cover the entire container while maintaining aspect ratio */
+}
+
+/* Media Queries for Responsive Design */
+
+/* For tablets and smaller devices */
+@media (max-width: 1024px) {
+  .site-header {
+    padding: 10px; /* Adjust spacing for smaller screens */
+  }
+
+  .main-nav {
+    display: flex;
+    justify-content: flex-end; /* Align navigation to the right */
+    flex: 1; /* Take up remaining space */
+    margin-right: 20px; /* Adjust right margin */
+  }
+
+  .sample-heading-1 {
+    font-size: 5vh; /* Decrease font size for mobile */
+    text-align: center; /* Center align text */
+  }
+
+  .typewriter {
+    display: block; /* Ensure typewriter is on its own line */
+    margin-top: 10px; /* Add space between lines */
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: row; /* Stack logo and nav horizontally */
+    justify-content: space-between; /* Align items to the right and left */
+    padding: 10px; /* Adjust spacing */
+  }
+
+  .main-nav {
+    display: none; /* Hide the main nav by default */
+    width: 100%; /* Full width dropdown */
+    background-color: black; /* Background color for the dropdown */
+    position: fixed;
+    top: 60px; /* Adjust according to header height */
+    right: 0; /* Align to the right side of the screen */
+    z-index: 999; /* Ensure dropdown is above other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+  }
+
+  .main-nav.active {
+    display: flex; /* Show the main nav when active */
+    flex-direction: column; /* Stack links vertically */
+    align-items: flex-end; /* Align links to the right */
+    gap: 10px; /* Adjust spacing between links */
+    padding: 10px; /* Padding for better touch experience */
+  }
+
+  .main-nav a {
+    color: white;
+    font-size: 16px; /* Adjust font size */
+    padding: 10px; /* Padding around each link */
+    text-align: center; /* Center text in dropdown */
+    width: 100%; /* Full width for links */
+    display: block; /* Display as block for full width */
+  }
+
+  .menu-icon {
+    display: block; /* Show the menu icon */
+    cursor: pointer; /* Add pointer cursor */
+    margin-right: 10px; /* Adjust spacing */
+  }
+
+  .menu-lines {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-icon.active .menu-lines:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-icon.active .menu-lines:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .sample-heading-1 {
+    font-size: 4vh; /* Decrease font size further for mobile */
+    text-align: left; /* Align text to the left */
+  }
+
+  .typewriter {
+    display: block; /* Ensure typewriter is on its own line */
+    margin-top: 10px; /* Add space between lines */
+  }
+
+  /* Ensure all text in Page 1 is aligned left */
+  .page.page-1 {
+    text-align: left;
+  }
 }
