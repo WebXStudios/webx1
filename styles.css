@@ -117,7 +117,7 @@
   }
 }
 
-/* Video container */
+/*Page 2 Video container */
 .video-container {
   position: absolute;
   top: 45%;
@@ -128,12 +128,28 @@
   /* border-radius: 20px;  Rounded corners for the video */
 }
 
+.page.video-page {
+  background-color: black;
+}
+
 /* Video styling */
 .rounded-video {
   width: 100%; /* Ensure the video fills its container */
   height: 100%; /* Ensure the video fills its container */
   object-fit: cover; /* Cover the entire container while maintaining aspect ratio */
+  border-radius: 20px;
 }
+
+/* Page 3 Services page */
+
+.page.page-3 {
+  background-color: red;
+  height: 30vh;
+}
+
+
+
+
 
 /* Media Queries for Responsive Design */
 
