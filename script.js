@@ -1,3 +1,4 @@
+// Typewriter effect
 const words = ["--- design", "--- development", "--- SEO"];
 let currentWordIndex = 0;
 let currentLetterIndex = 0;
@@ -26,10 +27,43 @@ function type() {
   }
 }
 
+// Start typewriter effect on page load
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(type, 500); // Initial delay, adjust as needed
 });
 
+
+// Adjusted showCard function
+let currentCard = 1;
+
+function showCard(cardNumber) {
+  if (cardNumber === currentCard) return;
+
+  const current = document.getElementById(`card${currentCard}`);
+  const next = document.getElementById(`card${cardNumber}`);
+
+  // Determine the direction of the slide
+  const direction = cardNumber > currentCard ? 'exit-left' : 'exit-right';
+  const enterDirection = cardNumber > currentCard ? 'exit-right' : 'exit-left';
+
+  // Add exit class to current card
+  current.classList.add(direction);
+
+  // After transition, remove exit class and hide the current card
+  current.addEventListener('transitionend', function handleTransitionEnd() {
+    current.classList.remove('active', direction);
+    current.removeEventListener('transitionend', handleTransitionEnd);
+  });
+
+  // Prepare the next card
+  next.classList.add('active');
+  next.classList.remove(enterDirection);
+
+  // Update currentCard
+  currentCard = cardNumber;
+}
+
+// Menu toggle functionality
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.querySelector(".menu-icon");
   const mainNav = document.querySelector(".main-nav");
@@ -39,3 +73,4 @@ document.addEventListener("DOMContentLoaded", function () {
     menuIcon.classList.toggle("active");
   });
 });
+
