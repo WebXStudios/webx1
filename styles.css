@@ -50,7 +50,26 @@
   color: white;
   font-family: "DM Sans", sans-serif;
   text-decoration: none;
+  font-weight: 600;
   font-size: 18px;
+  position: relative;
+}
+
+.main-nav a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px; /* Height of the underline */
+  bottom: 0;
+  left: 0;
+  background-color:white; /* Color of the underline */
+  transform: scaleX(0); /* Initially hidden */
+  transform-origin: bottom left;
+  transition: transform 0.3s ease; /* Animation duration and easing */
+}
+
+.main-nav a:hover::before {
+  transform: scaleX(1); /* Fully reveal the underline on hover */
 }
 
 /* Basic styles for the pages */
@@ -70,6 +89,10 @@
   padding-top: 60px; /* Adjust for the fixed header */
 }
 
+.half-page-50 {
+  height: 50vh; /* Half of the viewport height */
+  padding-top: 60px; /* Adjust for the fixed header */
+} 
 /* Full-page specific styles */
 .full-page {
   height: 100vh; /* Full viewport height */
@@ -143,12 +166,118 @@
 /* Page 3 Services page */
 
 .page.page-3 {
-  background-color: red;
-  height: 30vh;
+  background-color: #000;
+  height: 25vh;
+  color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10vh; /* Adjust the padding to move the text lower */
+}
+
+.sample-heading-3-1 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  color: #BEBEB0;
+  font-size: 10vh;
+  text-align: center; /* Center the text horizontally */
+}
+
+/* Page 4 Card page */
+
+.page.page-4 {
+  background-color: black;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height:60vh ;
+  border-radius: 0px;
+  padding: 20px;
+}
+
+/* Options styles */
+.options {
+  height: 100%; /* Fill 100% of parent (half-page) height */
+  width: 35%; /* Adjusted width for options */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #000;
+  padding: 0px;
+  /*box-shadow: 2px 0 5px rgba(0,0,0,0.1); */
+  overflow-y: hidden;
+}
+.option {
+  font-family: 'Manrope', sans-serif;
+  font-size: 7vh;
+  font-weight: 800;
+  color: #434242;
+  padding: 0px;
+  margin: 3px 0;
+  background-color: #000;
+  border: 0px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s, color 2s1; /* Added color transition */
+}
+
+.option:hover {
+  color: #fff; /* Change text color to white on hover */
+  transform: translateY(-5px); /* Optional: Move the text up slightly on hover */
+  /* background-color: #ddd;  Uncomment if needed */
 }
 
 
+/* Cards styles */
 
+/* Styles for active card */
+.card.active {
+  left: 0; /* Display active card */
+}
+
+
+.cards {
+  height: 100%; /* Fill 100% of parent (half-page) height */
+  width: 70%; /* Adjusted width for cards */
+  overflow: hidden;
+  position: relative;
+  padding: 0px; /* Add padding for spacing */
+  
+}
+
+.card {
+  font-family: 'Manrope', sans-serif;
+  font-size: 4vh;
+  font-weight: 800;
+  align-items: center;
+  height: 50vh; /* Make the card fill the entire viewport height */
+  position: absolute;
+  top: 0px;
+  left: 100%;
+  width: 100%;
+  background-color: #000;
+  /* border: 2px solid #333; */
+  padding: 0px;
+/*box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+  transition: left 0.5s ease-in-out;
+}
+
+.card-title
+{
+  color: #BEBEB0;
+}
+
+/* Active and exit animations for card */
+.card.active {
+  left: 0;
+}
+
+.card.exit-left {
+  left: -100%;
+}
+
+.card.exit-right {
+  left: 100%;
+}
 
 
 /* Media Queries for Responsive Design */
@@ -175,6 +304,63 @@
     display: block; /* Ensure typewriter is on its own line */
     margin-top: 10px; /* Add space between lines */
   }
+
+
+/*PAGE 4 IPAD/TAB VIEW*/
+  .page.page-4 {
+    flex-direction: column; /* Stack options and cards vertically */
+    height: auto; /* Adjust height for mobile view */
+  }
+
+  .options {
+    width: 100%; /* Full width for options on mobile */
+    height: auto; /* Auto height for options on mobile */
+    display: flex; /* Display options in a row */
+    flex-direction: row; /* Ensure options are in a single row */
+    justify-content: space-around; /* Space out options evenly */
+    padding: 10px 0; /* Add padding for better touch experience */
+    order: 1; /* Ensure options are on top */
+  }
+
+  .option {
+    font-size: 4vh; /* Decrease font size for options on mobile */
+    margin: 0 5px; /* Adjust margin for options on mobile */
+    padding: 5px; /* Add padding for better touch experience */
+    flex: 1; /* Allow options to grow and shrink */
+    text-align: center; /* Center align the text */
+  }
+
+  .cards {
+    width: 100%; /* Full width for cards on mobile */
+    height: 50vh; /* Increase height for cards on mobile */
+    order: 2; /* Ensure cards are below options */
+    position: relative; /* Reset position for stacking */
+    padding-top: 10px; /* Add padding for separation */
+  }
+
+  .card {
+    font-size: 2.5vh; /* Decrease font size for cards on mobile */
+    height: 100%; /* Make sure the card takes up the full height of the container */
+    padding: 10px; /* Add padding for better touch experience */
+    position: absolute; /* Absolute positioning for card effect */
+    left: 100%; /* Start position for cards */
+    transition: left 0.5s ease-in-out; /* Ensure smooth transition */
+  }
+
+  .card.active {
+    left: 0; /* Active card position */
+  }
+
+  .card.exit-left {
+    left: -100%; /* Exit to the left */
+  }
+
+  .card.exit-right {
+    left: 100%; /* Exit to the right */
+  }
+
+
+
 }
 
 /* For mobile devices */
@@ -255,4 +441,74 @@
   .page.page-1 {
     text-align: left;
   }
+
+
+  /*Page 3*/
+    .page.page-3 {
+      height: auto; /* Adjust height for mobile view */
+      padding-top: 12vh; /* Adjust padding for mobile view */
+    }
+  
+    .sample-heading-3-1 {
+      font-size: 5vh; /* Decrease font size for mobile */
+      padding: 10px; /* Add padding for better spacing */
+    }
+  
+  /*Page 4 Options and Cards*/
+  .page.page-4 {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column; /* Stack options and cards vertically */
+    height: 60vh; /* Adjust height for mobile view */
+  }
+
+  .options {
+    width: 100%; /* Full width for options on mobile */
+    height: auto; /* Auto height for options on mobile */
+    display: flex; /* Display options in a row */
+    flex-direction:row; /* Ensure options are in a single row */
+    justify-content: space-around; /* Space out options evenly */
+    padding: 0px 0; /* Add padding for better touch experience */
+    order: 1; /* Ensure options are on top */
+  }
+
+  .option {
+    font-size: 2.5vh; /* Decrease font size for options on mobile */
+    margin: 0 5px; /* Adjust margin for options on mobile */
+    padding: 5px; /* Add padding for better touch experience */
+    flex: 1; /* Allow options to grow and shrink */
+    text-align: center; /* Center align the text */
+    margin-bottom: 3vh;
+  }
+
+  .cards {
+    width: 100%; /* Full width for cards on mobile */
+    height: 40vh; /* Increase height for cards on mobile */
+    order: 2; /* Ensure cards are below options */
+    position: relative; /* Reset position for stacking */
+    padding-top: 10px; /* Add padding for separation */
+  }
+
+  .card {
+    font-size: 2.5vh; /* Decrease font size for cards on mobile */
+    height: 100%; /* Make sure the card takes up the full height of the container */
+    padding: 10px; /* Add padding for better touch experience */
+    position: absolute; /* Absolute positioning for card effect */
+    left: 100%; /* Start position for cards */
+    transition: left 0.5s ease-in-out; /* Ensure smooth transition */
+  }
+
+  .card.active {
+    left: 0; /* Active card position */
+  }
+
+  .card.exit-left {
+    left: -100%; /* Exit to the left */
+  }
+
+  .card.exit-right {
+    left: 100%; /* Exit to the right */
+  }
+
+
 }
